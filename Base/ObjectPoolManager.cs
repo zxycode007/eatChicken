@@ -99,7 +99,7 @@ public class ObjectPool
     }
 }
 
-public class ObjectPoolManager : MonoBehaviour
+public class ObjectPoolManager : IGameSystem
 {
     Dictionary<string, ObjectPool> m_pools;
 
@@ -107,10 +107,25 @@ public class ObjectPoolManager : MonoBehaviour
 
     void Awake()
     {
+        
+
+    }
+
+    public override void Initialize()
+    {
+        base.Initialize();
         m_pools = new Dictionary<string, ObjectPool>();
         instance = this;
+    }
 
+    public override void Update()
+    {
+        base.Update();
+    }
 
+    public override void Release()
+    {
+        base.Release();
     }
 
 

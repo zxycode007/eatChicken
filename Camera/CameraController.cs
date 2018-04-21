@@ -8,69 +8,75 @@ public enum ECameraModeType
     DefaultCamera
 }
 
-public class CameraController : BaseObject
+/// <summary>
+/// 相机控制器
+/// </summary>
+public class CameraController : IGameSystem
 {
-    CameraMode m_cameraMode;
+    CameraMode mCamMode;
+    Transform mCamTrans;
 
     public CameraMode cameraMode
     {
         get
         {
-            return m_cameraMode;
+            return mCamMode;
         }
     }
 
     public void SwitchCameraMode(ECameraModeType type)
     {
-        if (m_cameraMode != null)
-            m_cameraMode.OnSwitchMode();
+        if (mCamMode != null)
+            mCamMode.OnSwitchMode();
         switch (type)
         {
             case ECameraModeType.DefaultCamera:
                 {
-                    m_cameraMode = new CameraMode();
+                    mCamMode = new CameraMode();
                 }
                 break;
             case ECameraModeType.ThirdPersonCamera:
                 {
-                    m_cameraMode = new ThirdPersonCameraMode();
+                    mCamMode = new ThirdPersonCameraMode();
                 }
                 break;
             case ECameraModeType.FreedomCamera:
                 {
-                    m_cameraMode = new FreedomCameraMode();
+                    mCamMode = new FreedomCameraMode();
                 }
                 break;
         }
-        if (m_cameraMode != null)
+        if (mCamMode != null)
         {
-            m_cameraMode.transform = transform;
-            m_cameraMode.Init();
+            mCamMode.transform = mCamTrans;
+            mCamMode.Init();
         }
 
     }
 
     public static CameraController instance;
 
-    void Awake()
+
+    public override void Initialize()
     {
+        base.Initialize();
         instance = this;
         //SwitchCameraMode(ECameraModeType.ThirdPersonCamera);
         SwitchCameraMode(ECameraModeType.FreedomCamera);
     }
 
-    // Use this for initialization
-    void Start()
+    public override void Release()
     {
-
+        base.Release();
     }
 
+   
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        if (m_cameraMode != null)
+        if (mCamMode != null)
         {
-            m_cameraMode.Update();
+            mCamMode.Update();
         }
 
     }

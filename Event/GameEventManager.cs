@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 
 
-public class GameEventManager : MonoBehaviour
+public class GameEventManager : IGameSystem
 {
     public static GameEventManager instance;
 
@@ -16,9 +16,24 @@ public class GameEventManager : MonoBehaviour
             return eventReceivers;
         }
     }
-    void Awake()
+    public GameEventManager()
     {
         instance = this;
+    }
+
+    public override void Initialize()
+    {
+        base.Initialize();
+    }
+
+    public override void Release()
+    {
+        base.Release();
+    }
+
+    public override void Update()
+    {
+        base.Update();
     }
 
 

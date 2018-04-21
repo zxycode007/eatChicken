@@ -24,6 +24,8 @@ public enum GameEventType
     EVT_INPUT_KEYBOARD_KEY_DOWN,
     //键盘按键弹起
     EVT_INPUT_KEYBOARD_KEY_UP,
+    //游戏状态到时
+    EVT_ON_GAME_STATE_TIMEOUT
 }
 
 public class GameDef 
