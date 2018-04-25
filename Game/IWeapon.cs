@@ -19,6 +19,18 @@ public class IWeapon
     protected IEntity m_owner = null;
     public GameObject m_gameObj = null;
 
+    public int attackValue
+    {
+        get { return m_atkVal; }
+        set { m_atkVal = value; }
+    }
+
+    public int attackRange
+    {
+        get { return m_atkRange; }
+        set { m_atkRange = value; }
+    }
+
     public IEntity Owner { get { return m_owner; } set { m_owner = value; } }
     public GameObject gameObject { get { return m_gameObj; } }
 
