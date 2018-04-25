@@ -34,7 +34,7 @@ public class ThirdPersonCameraMode : CameraMode
 
     void FindCurTarget()
     {
-        
+        GlobalClient.Instance.GetUserEntity();
     }
 
     public override void Init()

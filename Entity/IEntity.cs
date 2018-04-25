@@ -2,12 +2,17 @@
 using UnityEngine.AI;
 using System.Collections;
 
+
+/// <summary>
+/// 实体接口
+/// </summary>
 public abstract class IEntity
 {
     protected string m_name;
     protected GameObject m_gameObj;
     protected NavMeshAgent m_navAgent;
     protected AudioSource m_audio;
+    private IWeapon m_weapon;
 
     protected bool m_bKilled = false;
     protected float m_removeTime = 5.0f;
@@ -29,6 +34,11 @@ public abstract class IEntity
     }
 
     public void Release()
+    {
+
+    }
+
+    public void Attack(IEntity target)
     {
 
     }

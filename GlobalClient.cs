@@ -11,12 +11,14 @@ public class GlobalClient
     protected GameStateController mGameStateController;
     protected ObjectPoolManager mObjectPoolManager;
     protected GameEventManager mGameEventManager;
+    protected EntityManager mEntityManager;
     
 
     public CameraController cameraController { get { return mCamController; } }
     public GameStateController gameStateController { get { return mGameStateController; } }
     public ObjectPoolManager objPoolManager { get { return objPoolManager; } }
     public GameEventManager eventManager { get { return mGameEventManager; } }
+    public EntityManager entityManager { get { return mEntityManager; } }
     
 
 
@@ -36,6 +38,11 @@ public class GlobalClient
     public long GetCurrentTicks()
     {
         return System.Environment.TickCount;
+    }
+
+    public IEntity GetUserEntity()
+    {
+        return entityManager.GetCurEntity();
     }
    
     public void Update()
