@@ -12,14 +12,14 @@ public class GlobalClient
     protected ObjectPoolManager mObjectPoolManager;
     protected GameEventManager mGameEventManager;
     protected EntityManager mEntityManager;
-    
+    protected TimeManager mTimeManager;
 
     public CameraController cameraController { get { return mCamController; } }
     public GameStateController gameStateController { get { return mGameStateController; } }
     public ObjectPoolManager objPoolManager { get { return objPoolManager; } }
     public GameEventManager eventManager { get { return mGameEventManager; } }
     public EntityManager entityManager { get { return mEntityManager; } }
-    
+    public TimeManager timeManager { get { return mTimeManager; } }
 
 
 

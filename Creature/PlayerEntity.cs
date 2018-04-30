@@ -7,6 +7,15 @@ using UnityEngine;
 /// </summary>
 public class PlayerEntity : IEntity
 {
-    
+
+    public override void DoPlayDeadEffect()
+    {
+        
+    }
+
+    public override void DoPlayDeadSound()
+    {
+        
+    }
  
 }

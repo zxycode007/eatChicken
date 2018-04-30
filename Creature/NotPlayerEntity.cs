@@ -7,5 +7,13 @@ using UnityEngine;
 /// </summary>
 public class NotPlayerEntity : IEntity {
 
-	 
+    public override void DoPlayDeadEffect()
+    {
+        
+    }
+
+    public override void DoPlayDeadSound()
+    {
+        
+    }
 }

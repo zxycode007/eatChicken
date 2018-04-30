@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System.Collections.Generic;
 
 
 /// <summary>
@@ -13,11 +14,24 @@ public abstract class IEntity
     protected NavMeshAgent m_navAgent;
     protected AudioSource m_audio;
     protected string m_name;
+    protected IEntityAIController m_aiController;
 
 
     public string name
     {
         get { return m_name; }
+    }
+
+    public IEntityAIController aiController
+    {
+        get
+        {
+            return m_aiController;
+        }
+        set
+        {
+            m_aiController = value;
+        }
     }
     //武器接口
     private IWeapon m_weapon;
@@ -53,9 +67,24 @@ public abstract class IEntity
         return m_gameObj;
     }
 
+    public void UpdateAI()
+    {
+
+    }
+
     public void Release()
     {
 
+    }
+
+    public void UpdateAI(List<IEntity> targets)
+    {
+        m_aiController.Update(targets);
+    }
+
+    public void RemoveAITarget(IEntity target)
+    {
+        m_aiController.RemoveAITarget(target);
     }
 
     /// <summary>
@@ -67,7 +96,17 @@ public abstract class IEntity
         return m_attribute.CalcAttackVal();
     }
 
-    public void Attack(IEntity target)
+    public float GetAttackRange()
+    {
+        return 0;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return m_gameObj.transform.position;
+    }
+
+    public virtual void Attack(IEntity target)
     {
         //设置武器攻击值
         m_weapon.attackValue = m_attribute.CalcAttackVal();
@@ -76,17 +115,43 @@ public abstract class IEntity
         m_weapon.Fire(target);
     }
 
-    public void UnderAttack(IEntity attacker)
+    public virtual void UnderAttack(IEntity attacker)
     {
         m_attribute.CalcDmgReduceVal(attacker);
 
         if(m_attribute.CurHp <= 0)
         {
             //死亡
-            //Dead
+            DoPlayDeadSound();
+            DoPlayDeadEffect();
+            Dead();
         }
 
     }
 
+    public virtual void Dead()
+    {
+
+
+    }
+
+    public virtual bool IsDead()
+    {
+        return m_bKilled;
+    }
+
+    public virtual void MoveTo(Vector3 pos)
+    {
+
+    }
+
+    public virtual void StopMove()
+    {
+
+    }
+
+    public abstract void DoPlayDeadSound();
+
+    public abstract void DoPlayDeadEffect();
 
 }

@@ -10,7 +10,7 @@ public enum EWeaponType
 }
 
 //武器接口
-public class IWeapon
+public abstract class IWeapon
 {
 
     protected EWeaponType m_weaponType = EWeaponType.NULL;
@@ -43,21 +43,23 @@ public class IWeapon
         m_atkVal = attackValue;
     }
 
+    //模板方法
     public void Fire(IEntity target)
     {
+        
+        //流程定义
+        DoShowShootEffect(); //步骤1
+        DoShootBulletEffect(target); //步骤2
+        DoShootSoundEffect(); //步骤3
 
     }
 
-    public void ShowBulletEffect(Vector3 targetPos, float lineWidth, float showTime)
-    {
+   
+    public abstract void DoShootBulletEffect(IEntity target);
 
-    }
-
-
-    public void ShowShootEffect(Vector3 targetPos, float lineWidth, float showTime)
-    {
-
-    }
+    public abstract void DoShootSoundEffect();
+ 
+    public abstract void DoShowShootEffect();
 
     public void ShowSoundEffect(string soundClipName)
     {
