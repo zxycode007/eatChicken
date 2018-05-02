@@ -26,7 +26,7 @@ public abstract class IEntityAIController
     }
 
     //切换AI状态
-    public void SwitchEntityAIState(IAIState state)
+    public virtual void SwitchEntityAIState(IAIState state)
     {
         m_aiState = state;
         m_aiState.AIController = this;

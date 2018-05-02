@@ -35,8 +35,12 @@ public class IdleAIState : IAIState
             //朝进攻位置移动
             if(m_bSetAttackPosition)
             {
-                return;
+                m_controller.SwitchEntityAIState(new MoveAIState());
+            }else
+            {
+                m_controller.SwitchEntityAIState(new GuardAIState());
             }
+            return;
         }
         Vector3 curPos = m_controller.GetPosition();
         //先找一个最近目标
