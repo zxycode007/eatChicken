@@ -7,6 +7,11 @@ using UnityEngine;
 /// </summary>
 public class NotPlayerEntity : IEntity {
 
+    public NotPlayerEntity():base()
+    {
+
+    }
+
     public override void DoPlayDeadEffect()
     {
         
@@ -15,5 +20,10 @@ public class NotPlayerEntity : IEntity {
     public override void DoPlayDeadSound()
     {
         
+    }
+
+    public override void Update()
+    {
+        base.Update();
     }
 }

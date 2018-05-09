@@ -6,17 +6,30 @@ using System;
 
 public class GameEvtArg : EventArgs
 {
-    public DataBuffer m_buf;
+    byte[] m_data = null;
+
+    public DataBuffer databuf
+    {
+        get { return new DataBuffer(m_data); }
+    }
 
     public GameEvtArg()
         : base()
     {
 
     }
+    public GameEvtArg(byte[] data)
+    {
+        m_data = data;
+    }
+
     public GameEvtArg(DataBuffer buf)
         : base()
     {
-        m_buf = buf;
+        if(buf != null)
+        {
+            m_data = buf.Array;
+        }
     }
 
 }

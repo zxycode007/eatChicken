@@ -4,6 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 
+public enum EEntityState
+{
+    EEntityState_IsDead
+}
+
 /// <summary>
 /// 实体接口
 /// 实体的行为
@@ -14,12 +19,21 @@ public abstract class IEntity
     protected NavMeshAgent m_navAgent;
     protected AudioSource m_audio;
     protected string m_name;
+    protected long m_entityId = -1;
     protected IEntityAIController m_aiController;
 
 
     public string name
     {
         get { return m_name; }
+    }
+
+    public long EntityID
+    {
+        get
+        {
+            return m_entityId;
+        }
     }
 
     public IEntityAIController aiController
@@ -54,7 +68,7 @@ public abstract class IEntity
 
     public IEntity()
     {
-
+        m_entityId = EntityManager.GenerateEnityID();
     }
 
     public void BindGameObject(GameObject go)
@@ -67,17 +81,18 @@ public abstract class IEntity
         return m_gameObj;
     }
 
-    public void UpdateAI()
+    public virtual void Update()
     {
 
     }
+
 
     public void Release()
     {
 
     }
 
-    public void UpdateAI(List<IEntity> targets)
+    public virtual void UpdateBehavior(List<IEntity> targets)
     {
         m_aiController.Update(targets);
     }
