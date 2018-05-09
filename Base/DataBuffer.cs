@@ -29,7 +29,10 @@ public class DataBuffer
 
     public DataBuffer(byte[] data)
     {
-        byteList.AddRange(data);
+        if(data != null)
+        {
+            byteList.AddRange(data);
+        }
     }
 
     public void MoveCursor(int n)

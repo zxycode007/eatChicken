@@ -35,9 +35,10 @@ public class FreedomCameraMode : CameraMode
     public void OnMouseButtonDown(object sender, EventArgs arg)
     {
         GameEvtArg garg = arg as GameEvtArg;
-        if (garg != null && garg.m_buf != null)
+        DataBuffer buf = garg.databuf;
+        if (garg != null && buf != null && buf.Size > 0)
         {
-            int i = garg.m_buf.ReadByte();
+            int i = buf.ReadByte();
             if (i == 0)
             {
                 isRMBDown = true;
@@ -53,9 +54,10 @@ public class FreedomCameraMode : CameraMode
     public void OnMouseButtonUp(object sender, EventArgs arg)
     {
         GameEvtArg garg = arg as GameEvtArg;
-        if (garg != null && garg.m_buf != null)
+        DataBuffer buf = garg.databuf;
+        if (garg != null  && buf != null && buf.Size > 0)
         {
-            int i = garg.m_buf.ReadByte();
+            int i = buf.ReadByte();
             if (i == 0)
             {
                 isRMBDown = false;
@@ -71,10 +73,11 @@ public class FreedomCameraMode : CameraMode
     public void OnMouseMove(object sender, EventArgs arg)
     {
         GameEvtArg garg = arg as GameEvtArg;
-        if (garg != null && garg.m_buf != null)
+        DataBuffer buf = garg.databuf;
+        if (garg != null && buf != null && buf.Size > 0)
         {
-            float deltaX = garg.m_buf.ReadFloat();
-            float deltaY = garg.m_buf.ReadFloat();
+            float deltaX = buf.ReadFloat();
+            float deltaY = buf.ReadFloat();
             if (isRMBDown)
             {
                 x += deltaX * m_xSpeed * 0.02f;
@@ -91,9 +94,10 @@ public class FreedomCameraMode : CameraMode
     public void OnKeyDown(object sender, EventArgs arg)
     {
         GameEvtArg garg = arg as GameEvtArg;
-        if (garg != null && garg.m_buf != null)
+        DataBuffer buf = garg.databuf;
+        if (garg != null && buf != null && buf.Size > 0)
         {
-            KeyCode code = (KeyCode)garg.m_buf.ReadInt();
+            KeyCode code = (KeyCode)buf.ReadInt();
             if (code == KeyCode.W)
             {
                 isFwdBtnDown = true;
@@ -117,9 +121,10 @@ public class FreedomCameraMode : CameraMode
     public void OnKeyUp(object sender, EventArgs arg)
     {
         GameEvtArg garg = arg as GameEvtArg;
-        if (garg != null && garg.m_buf != null)
+        DataBuffer buf = garg.databuf;
+        if (garg != null && buf != null && buf.Size > 0)
         {
-            KeyCode code = (KeyCode)garg.m_buf.ReadInt();
+            KeyCode code = (KeyCode)buf.ReadInt();
             if (code == KeyCode.W)
             {
                 isFwdBtnDown = false;
