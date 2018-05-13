@@ -79,7 +79,7 @@ public class EntityManager : IGameSystem
         return m_idOrder;
     }
 
-    public void RemoveEntity(List<IEntity> entities, List<IEntity> opponents, EEntityState state)
+    public void RemoveEntity(List<IEntity> entities, List<IEntity> opponents, EntityState state)
     {
         List<IEntity> removeList = new List<IEntity>();
         foreach(IEntity entity in entities)

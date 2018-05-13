@@ -4,9 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public enum EEntityState
+public enum EntityState
 {
-    EEntityState_IsDead
+    EntityState_IsDead
+}
+
+public enum EntityType
+{
+    EntityType_PlayerRifeMan,
+    EntityType_PlayerMaskMan,
+    EntityType_NotPlayerZombie,
+    EntityType_NotPlayerGaint,
+    EntityType_NotPlayerSkeleton
 }
 
 /// <summary>
@@ -21,6 +30,13 @@ public abstract class IEntity
     protected string m_name;
     protected long m_entityId = -1;
     protected IEntityAIController m_aiController;
+    protected EntityType m_type = EntityType.EntityType_PlayerRifeMan;
+
+    public EntityType entityType
+    {
+        get { return m_type; }
+        set { m_type = value; }
+    }
 
 
     public string name
@@ -59,6 +75,12 @@ public abstract class IEntity
         m_name = m_attribute.AttrName;
 
         m_navAgent.speed = m_attribute.Speed;
+    }
+
+    public IWeapon weapon
+    {
+        get { return m_weapon; }
+        set { m_weapon = value; }
     }
 
     protected bool m_bKilled = false;

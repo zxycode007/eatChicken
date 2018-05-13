@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 非玩家可控制实体
+/// 玩家可控制实体
 /// </summary>
-public class NotPlayerEntity : IEntity {
-
-    public NotPlayerEntity():base()
+public class PlayerEntity : IEntity
+{
+    public PlayerEntity():base()
     {
-
+        m_type = EntityType.EntityType_PlayerRifeMan;
     }
 
     public override void DoPlayDeadEffect()
@@ -26,4 +26,5 @@ public class NotPlayerEntity : IEntity {
     {
         base.Update();
     }
+ 
 }
