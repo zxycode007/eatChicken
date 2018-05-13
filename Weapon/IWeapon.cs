@@ -17,7 +17,7 @@ public abstract class IWeapon
     protected int m_atkVal = 0;
     protected int m_atkRange = 0;
     protected IEntity m_owner = null;
-    public GameObject m_gameObj = null;
+    public GameObject m_modelObj = null;
 
     public int attackValue
     {
@@ -32,7 +32,7 @@ public abstract class IWeapon
     }
 
     public IEntity Owner { get { return m_owner; } set { m_owner = value; } }
-    public GameObject gameObject { get { return m_gameObj; } }
+    public GameObject modelObject { get { return m_modelObj; } }
 
     public EWeaponType weaponType { get { return m_weaponType; } }
 

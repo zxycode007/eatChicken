@@ -24,11 +24,13 @@ public enum EntityType
 /// </summary>
 public abstract class IEntity
 {
-    protected GameObject m_gameObj;
+    protected GameObject m_modelObj;
     protected NavMeshAgent m_navAgent;
     protected AudioSource m_audio;
     protected string m_name;
     protected long m_entityId = -1;
+    //属性ID
+    protected long m_attrID = 0;
     protected IEntityAIController m_aiController;
     protected EntityType m_type = EntityType.EntityType_PlayerRifeMan;
 
@@ -50,6 +52,12 @@ public abstract class IEntity
         {
             return m_entityId;
         }
+    }
+
+    public long AttrID
+    {
+        get { return m_attrID; }
+        set { m_attrID = value; }
     }
 
     public IEntityAIController aiController
@@ -93,14 +101,14 @@ public abstract class IEntity
         m_entityId = EntityManager.GenerateEnityID();
     }
 
-    public void BindGameObject(GameObject go)
+    public void BindModelObject(GameObject go)
     {
-        m_gameObj = go;
+        m_modelObj = go;
     }
 
-    public GameObject GetGameObject()
+    public GameObject GetModelObject()
     {
-        return m_gameObj;
+        return m_modelObj;
     }
 
     public virtual void Update()
@@ -140,7 +148,7 @@ public abstract class IEntity
 
     public Vector3 GetPosition()
     {
-        return m_gameObj.transform.position;
+        return m_modelObj.transform.position;
     }
 
     public virtual void Attack(IEntity target)

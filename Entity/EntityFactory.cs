@@ -47,20 +47,29 @@ public class EntityFactory : IEntityFactory
                 prefabName = "RifeMan";
                 break;
         }
-        //先读取对应模型
-       tmpGo  = GlobalClient.Instance.resourceManager.FindPrefab(prefabName);
+        //先读取预设
+        tmpGo = GlobalClient.Instance.objPoolManager.Get<PlayerEntity>();
+        if (tmpGo == null)
+            entity = tmpGo.GetComponent<PlayerEntity>();
+        //設置模型
+        
        //创建武器
         IWeapon weapon = CreateWeapon(curWeapon);
         entity.weapon = weapon;
+        //创建属性
         PlayerEntityAttr attr = CreatePlayerEntityAttr(0);
-
+        entity.SetEntityAttribute(attr);
+        //创建ai行为
         PlayerEntityAIController aiController = CreatePlayerEntityAIController();
         entity.aiController = aiController;
         
+        //添加到实体管理器
         GlobalClient.Instance.entityManager.AddPlayerdEntity(entity);
         return entity;
     }
+    
 
+    //临时方法
     private PlayerEntityAttr CreatePlayerEntityAttr(int id)
     {
         return null;
