@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
+
 public class CameraMode
 {
     protected Transform m_transform;
@@ -21,6 +24,7 @@ public class CameraMode
         m_EvtCtx = new GameEventContext();
     }
 
+  
 
     public virtual void RegisterEvt()
     {
